@@ -20,5 +20,5 @@ Main files included in the project are as follows:
 
 - The scripts `strong_perturbation_accuracy.m`, `validation_accuracy_comparison.m`, and `Strong_Perturbation_Performance_Comparison.m` are used to analyze and visualize performance metrics across strategies, supporting the figures presented in the report (Figure 4 and Figure 5).
 
-It is recommended to run the project using MATLAB R2023a or later. GPU acceleration is highly recommended to improve training efficiency.This project uses the GTSRB (German Traffic Sign Recognition Benchmark) dataset, available at:
+It is recommended to run the project using MATLAB R2024b. GPU acceleration is highly recommended to improve training efficiency. This project uses the GTSRB (German Traffic Sign Recognition Benchmark) dataset, available at:
 https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign
