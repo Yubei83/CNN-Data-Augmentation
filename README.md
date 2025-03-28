@@ -1,24 +1,29 @@
 # GTSRB Data Augmentation and Robustness Analysis Project
 
-This project investigates the impact of various data augmentation strategies on the robustness of traffic sign image classification models under perturbations. The model is based on a fine-tuned AlexNet and trained on the GTSRB (German Traffic Sign Recognition Benchmark) dataset. Since the original model already achieves near-saturated validation accuracy (above 99%), the project shifts its focus to robustness under synthetic distortions rather than further improving accuracy on clean data.
+This project investigates the effect of data augmentation strategies on the robustness of traffic sign classification using the GTSRB dataset and AlexNet.
 
-Four types of data augmentation strategies were designed and implemented: no augmentation (baseline), basic augmentation, advanced augmentation, and selective augmentation. Each strategy was executed with five independent training runs, and robustness was evaluated under both moderate and strong perturbation conditions. In addition, a set of scripts was developed to calculate statistics, generate visualizations, and analyze performance metrics such as standard deviation.
+The baseline model achieves high validation accuracy (>99%), so the focus is shifted to robustness under synthetic perturbations. Four augmentation strategies are implemented:
 
-Main files included in the project are as follows:
+- Baseline (no augmentation)  
+- Basic augmentation (flip, translation, scaling)  
+- Advanced augmentation (adds rotation, brightness, noise)  
+- Selective augmentation (mild rotation and translation, based on class-level difficulty)
 
-- Files starting with `baseline` correspond to baseline experiments without data augmentation, including five training scripts and their corresponding evaluation scripts under moderate and strong perturbations.
+Each strategy is trained over 5 independent runs. Robustness is evaluated under two conditions:
 
-- Files starting with `aug_basic` implement the basic augmentation strategy, including training and evaluation scripts, as well as a robustness test under moderate perturbations.
+- **Moderate**: blur (σ=1.0), small-angle rotation, gamma (0.9)  
+- **Strong**: blur (σ=3.5), large rotation, gamma (0.4), salt-and-pepper noise (3%)
 
-- Files starting with `aug_adv` contain training and evaluation scripts for the advanced augmentation strategy, along with scripts for testing under strong perturbations.
+Evaluation includes validation accuracy, robustness accuracy, standard deviation, and variance.
 
-- Files starting with `selective_aug` are related to the selective augmentation strategy, covering five training runs and evaluations under both moderate and strong perturbation conditions.
+## File Structure
 
-- The files `generate_robustness_test.m` and `generate_robustness_mid_test.m` are used to generate perturbed test sets for strong and moderate conditions, respectively.
+- `baseline_run*.m`, `baseline_run*_robustness_*.m`: baseline training and testing  
+- `aug_basic_run*.m`, `aug_basic_robustness_run*.m`: basic augmentation  
+- `aug_adv_run*.m`, `aug_adv_robustness_run*_strong.m`: advanced augmentation  
+- `selective_aug_run*.m`, `selective_aug_robustness_*_run*.m`: selective augmentation  
+- `generate_robustness_test.m`, `generate_robustness_mid_test.m`: test set generation  
+- `accuracy_table.m`: computes mean, std, variance  
+- `validation_accuracy_comparison.m`, `strong_perturbation_accuracy.m`, `robustness_baseline_selective_boxplot.m`: plotting
 
-- The script `accuracy_table.m` compiles all accuracy results across validation, moderate, and strong perturbation evaluations, and calculates mean, standard deviation, and variance.
-
-- The scripts `strong_perturbation_accuracy.m`, `validation_accuracy_comparison.m`, and `Strong_Perturbation_Performance_Comparison.m` are used to analyze and visualize performance metrics across strategies, supporting the figures presented in the report (Figure 4 and Figure 5).
-
-It is recommended to run the project using MATLAB R2024b. GPU acceleration is highly recommended to improve training efficiency. This project uses the GTSRB (German Traffic Sign Recognition Benchmark) dataset, available at:
-https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign
+Implemented in MATLAB. Dataset: GTSRB.
